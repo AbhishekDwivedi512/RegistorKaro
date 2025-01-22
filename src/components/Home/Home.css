@@ -1,0 +1,154 @@
+/* General Container */
+.home-container {
+    font-family: Arial, sans-serif;
+    color: #00274e;
+    line-height: 1.6;
+  }
+  
+  /* Header Section */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    gap: 25px;
+    font-size: larger;
+    background-color: white; /* Changed to white color */
+    color: #00274e; /* Adjusted text color for contrast */
+  }
+  .search-icon{
+    color: black;
+  }
+  .logo{
+    height: auto;
+    width: auto;
+  }
+  .logos{
+    height: 18%;
+  }
+  .navbar {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  .navbar{
+    color: white;
+  }
+  .navbar a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  .navbar .search-icon {
+    margin-left: 10px;
+
+    cursor: pointer;
+  }
+  
+  .expert-button {
+    background-color: orange;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Main Section */
+  .main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    background: linear-gradient(to right, #f0f4fc, #fff);
+  }
+  
+  .content {
+    max-width: 50%;
+  }
+  
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .rating .star-icon {
+    color: orange;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .stats {
+    display: flex;
+    gap: 30px;
+    margin: 20px 0;
+  }
+  
+  .stat-item {
+    text-align: center;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .talk-expert {
+    background-color: orange;
+    color: white;
+    border: none;
+    font-size: 20px;
+    text-shadow:blanchedalmond;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .see-how {
+    border: 1px solid orange;
+    color: orange;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+  
+  .video-icon {
+    font-size: 16px;
+    color: red;
+    cursor: pointer;
+  }
+  
+  .illustration img {
+    max-width: 100%; 
+  }  
+  .side-actions button {
+    background: #f0f4fc;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  /* Partners Section */
+  .partners {
+    text-align: center;
+    padding: 40px;
+  }
+  
+  .partners .logos {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .partners .logos img {
+    height: 40px;
+  }
+  

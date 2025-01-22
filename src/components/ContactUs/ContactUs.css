@@ -1,0 +1,191 @@
+.faq {
+  text-align: center;
+  margin: 20px;
+}
+.faq-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.faq-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #fff;
+}
+.faq-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #1c4670;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.mobile-app {
+  background-color: #1c4670;
+  color: white;
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.faq-button{
+  margin-bottom: 10%;
+}
+.content {
+  max-width: 50%;
+}
+.app-links {
+  display: flex;
+  gap: 10px;
+}
+.mobile-images {
+  display: flex;
+  gap: 10px;
+}
+.mobile-image {
+  max-height: 200px;
+  object-fit: contain;
+}
+
+.digital-reality {
+  text-align: center;
+  padding: 40px;
+  background: linear-gradient(to right, #ffa229, #1c4670);
+  color: white;
+}
+.digital-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  
+}
+.email-input {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+  margin-left: 250px;
+  border:none;
+  width: 550px;
+}
+.email-input input {
+  padding: 10px;
+  border-radius: 5px;
+  width: 300px;
+  border: none;
+}
+.email-input button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #FFA229;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.benefits {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 0;
+  margin: 10px 0;
+}
+.partners img {
+  height: 30px;
+  margin: 8px;
+}
+.partners{
+  background-color: white;
+}
+.search-bar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.search-bar-container input {
+  width: 300px;
+  max-width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.search-bar-container button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #f7981c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.search-bar-container button:hover {
+  background-color: #e48714;
+}
+.stats-section {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #fff;
+}
+
+.stats-title {
+  color: #f7981c;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.stats-heading {
+  color: #4a2d17;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.stats-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.stat-item {
+  text-align: center;
+  flex: 1 1 120px;
+  max-width: 180px;
+}
+
+.stat-item h3 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #4a2d17;
+  margin: 0;
+}
+
+.stat-item h3 span {
+  font-size: 24px;
+  color: #f7981c;
+}
+
+.stat-item p {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 10px;
+}

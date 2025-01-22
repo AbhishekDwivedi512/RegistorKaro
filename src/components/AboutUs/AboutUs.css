@@ -1,0 +1,293 @@
+/* AboutPage.css */
+.about-page {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  .about-register-karo {
+    display: flex;
+    padding: 50px;
+    align-items: center;
+    background-color: #fff;
+  }
+  
+  .content-container {
+    flex: 1;
+    padding-right: 20px;
+  }
+  
+  .welcome-text {
+    color: #ff9900;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+  
+  .main-heading {
+    font-size: 36px;
+    margin: 10px 0;
+  }
+  
+  .main-heading span {
+    color: #ff9900;
+  }
+  
+  .description {
+    line-height: 1.6;
+    margin: 15px 0;
+    font-size: 16px;
+  }
+  
+  .recommendation {
+    font-style: italic;
+    font-size: 14px;
+  }
+  
+  .learn-more-btn {
+    background-color: #0047ab;
+    color: white;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .learn-more-btn:hover {
+    background-color: #00337a;
+  }
+  
+  .image-container {
+    flex: 1;
+  }
+  
+  .team-image {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .why-register-karo {
+    text-align: center;
+    padding: 50px;
+    background-color: #f9f9f9;
+  }
+  
+  .subheading {
+    color: #ff9900;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+  
+  .heading {
+    font-size: 32px;
+    margin: 10px 0;
+  }
+  
+  .heading span {
+    color: #ff9900;
+  }
+  
+  .features {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  
+  .feature {
+    flex: 1;
+    max-width: 250px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .feature-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 15px;
+  }
+  
+  .confidential {
+    background: url('/public/assets/Confidential.png') no-repeat center center;
+    background-size: contain;
+  }
+  
+  .no-hidden-fee {
+    background: url('/public/assets/Fee.png') no-repeat center center;
+    background-size: contain;
+  }
+  .happy {
+    background: url('/public/assets/Happy.png') no-repeat center center;
+    background-size: contain;
+  }
+  .Experts {
+    background: url('/public/assets/Expert.png') no-repeat center center;
+    background-size: contain;
+  }
+  .feature-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  about-container {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+  }
+  
+  /* Video Introduction Section */
+  .video-introduction {
+    background-color:#1c4670;
+    padding: 40px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+  }
+  
+  .two-column-layout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .video-text {
+    flex: 1;
+  }
+  
+  .video-text h1 {
+    font-size: 28px;
+    color: white;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+  
+  .video-text p {
+    color: whitesmoke;
+    text-align: left;
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .info-boxes {
+    display: grid;
+    gap: 20px;
+  }
+  
+  .info-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  
+  .iconlogo{
+    margin-top: 30px;
+    width: 50px;
+    height: 50px;
+  }
+  .info-box h2 {
+    font-size: 25px;
+    color: white;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+  
+  .video-image {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .video-image img {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+  
+  .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 0, 0, 0.8);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* Happy Clients Section */
+  .happy-clients {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .happy-clients h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .happy-clients p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+  
+  .client-logos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .client-logos img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .show-more {
+    margin-top: 20px;
+    padding: 10px 20px;
+    color: #007bff;
+    background: none;
+    font-size: 25px;
+    font-weight: bolder;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Steps Section */
+  .steps {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    background-color: #ffa229;
+    padding: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .step {
+    text-align: center;
+    color: #fff;
+  }
+  
+  .step span {
+    display: block;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .step p {
+    font-size: 14px;
+  }
+  

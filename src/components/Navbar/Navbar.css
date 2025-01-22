@@ -1,0 +1,19 @@
+/* Navbar.css */
+header {
+    background-color: orange;
+    padding: 10px;
+  }
+  
+  .navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar ul li a {
+    text-decoration: none;
+    color: white;
+  }
+  

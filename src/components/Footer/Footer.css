@@ -1,0 +1,136 @@
+/* Footer.css */
+.footer {
+    background-color: #1c4670;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .email-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .email-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 250px;
+  }
+  
+  .submit-btn {
+    background-color: orange;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .features {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+  }
+  
+  .logo-row {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px 0;
+    flex-wrap: wrap;
+  }
+  
+  .logo-row img {
+    height: 50px;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Distribute evenly */
+    margin-left:5%;
+    gap: 20px; /* Add space between columns */
+    padding: 20px 0;
+  }
+  .text1{
+    font-size: 19px;
+  }
+  
+  .column {
+    flex: 1 1 18%; /* Make columns flexible and occupy 18% of the row */
+    min-width: 180px; /* Set a minimum width for smaller screens */
+    text-align: left;
+  }
+  
+  .column h4 {
+    color: orange;
+    font-size: 1.1rem;
+  }
+  
+  .column ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .column ul li {
+    padding: 5px 0;
+    font-size: 0.9rem;
+    color: #fff;
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    font-size: 1.5rem;
+    margin-top: 10px;
+  }
+  
+  .footer-bottom {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center align both arrow and text */
+    gap: 10px; /* Add spacing between the arrow and the text */
+    padding: 20px 0;
+    border-top: 1px ;
+    position: relative;
+  }
+  
+  .scroll-top {
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px; /* Push the arrow upwards */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+  }
+  .scroll-top:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+  }
+  
+  .scroll-top:active {
+    transform: scale(0.95); /* Slight shrink when clicked */
+  }
+  @media (max-width: 768px) {
+    .scroll-top {
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+  
+    .footer-bottom {
+      gap: 8px;
+    }
+  }
