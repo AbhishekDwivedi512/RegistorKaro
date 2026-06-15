@@ -100,6 +100,14 @@ stages:
               downloadPath: '$(Pipeline.Workspace)'
             displayName: 'Download Artifact'
 
+          
+          - script: |
+              echo "Pipeline Workspace:"
+              ls -R $(Pipeline.Workspace)
+            displayName: 'Check Downloaded Files'
+
+  
+
           # Deploy to Azure App Service
           - task: AzureWebApp@1
             inputs:
