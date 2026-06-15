@@ -26,12 +26,6 @@ stages:
     steps:
 
     # Install Node.js
-    - task: NodeTool@1
-      inputs:
-        versionSpec: '$(nodeVersion)'
-      displayName: 'Install Node.js'
-
-      
 
     # Install dependencies
         
@@ -112,6 +106,6 @@ stages:
               azureSubscription: '$(azureServiceConnection)'
               appType: 'webAppLinux'
               appName: '$(webAppName)'
-              package: '$(Pipeline.Workspace)/react-build'
+              package: '$(Pipeline.Workspace)/react-build/react-app.zip'
             displayName: 'Deploy to Azure Web App'
 
