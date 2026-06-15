@@ -39,13 +39,15 @@ stages:
       displayName: Install Node.js
 
     - script: |
+       npm install react-scripts --save
+      displayName: Install reactscript 
+
+    - script: |
         npm install
       displayName: Install Dependencies
 
-    - script: |
-       npm install react-scripts --save
-      displayName: Install reactscript
-      
+    
+
     - script: |
         npm run build
       displayName: Build React Application
