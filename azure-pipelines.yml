@@ -1,3 +1,4 @@
+
 trigger:
 - main
 
@@ -25,17 +26,16 @@ stages:
 
     steps:
 
-    # Use Node.js
-    - task: UseNode@1
+    # Install Node.js
+    - task: NodeTool@0
       inputs:
-        version: '18.x'
-      displayName: 'Use Node.js 18'
+        versionSpec: '$(nodeVersion)'
+      displayName: 'Install Node.js'
 
-    # Verify Node version
+    # Verify Node & npm
     - script: |
         node -v
         npm -v
-        which node
       displayName: 'Verify Node Version'
 
     # Install dependencies
@@ -43,18 +43,18 @@ stages:
         npm install
       displayName: 'Install Dependencies'
 
-    # Build application
+    # Build React app
     - script: |
         npm run build
       displayName: 'Build React Application'
 
     # Verify build folder
     - script: |
-        ls -la
-        ls -la build
+        echo "Build folder contents:"
+        ls -R build
       displayName: 'Verify Build Output'
 
-    # Create ZIP package
+    # Archive build folder
     - task: ArchiveFiles@2
       inputs:
         rootFolderOrFile: 'build'
@@ -62,12 +62,7 @@ stages:
         archiveType: 'zip'
         archiveFile: '$(Build.ArtifactStagingDirectory)/react-app.zip'
         replaceExistingArchive: true
-      displayName: 'Create ZIP Package'
-
-    # Verify ZIP file
-    - script: |
-        ls -la $(Build.ArtifactStagingDirectory)
-      displayName: 'Verify ZIP File'
+      displayName: 'Archive Build Files'
 
     # Publish artifact
     - task: PublishBuildArtifacts@1
@@ -105,11 +100,11 @@ stages:
               downloadPath: '$(Pipeline.Workspace)'
             displayName: 'Download Artifact'
 
-          # Verify downloaded files
+          # Verify downloaded artifact
           - script: |
               echo "Pipeline Workspace:"
               ls -R $(Pipeline.Workspace)
-            displayName: 'Check Downloaded Files'
+            displayName: 'Verify Downloaded Files'
 
           # Deploy to Azure App Service
           - task: AzureWebApp@1
@@ -118,4 +113,6 @@ stages:
               appType: 'webAppLinux'
               appName: '$(webAppName)'
               package: '$(Pipeline.Workspace)/react-build/react-app.zip'
+              runtimeStack: 'NODE|20-lts'
             displayName: 'Deploy to Azure Web App'
+
