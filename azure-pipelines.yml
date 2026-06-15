@@ -5,7 +5,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  nodeVersion: '20.x'
+  nodeVersion: '18.x'
 
   # Azure Details
   azureServiceConnection: 'azure-connection'
