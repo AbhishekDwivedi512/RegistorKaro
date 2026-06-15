@@ -1,8 +1,6 @@
 # Starter pipeline
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - main
 
@@ -25,37 +23,33 @@ stages:
   displayName: Build React App
 
   jobs:
-
-  
-
   - job: BuildJob
     displayName: Install and Build
 
     steps:
 
+    # Install Node.js
     - task: NodeTool@0
       inputs:
         versionSpec: '$(nodeVersion)'
       displayName: Install Node.js
 
+    # Clean install dependencies
     - script: |
-       npm install react-scripts --save
-      displayName: Install reactscript 
-
-    - script: |
-        npm install
+        npm ci
       displayName: Install Dependencies
 
-    
+    # Verify package.json
+    - script: |
+        cat package.json
+      displayName: Verify package.json
 
+    # Build React App
     - script: |
         npm run build
       displayName: Build React Application
 
-    - script: |
-          npm audit fix --force
-      displayName: force fix vulnerablilities      
-
+    # Copy build files
     - task: CopyFiles@2
       inputs:
         SourceFolder: 'build'
@@ -63,12 +57,12 @@ stages:
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
       displayName: Copy Build Files
 
+    # Publish artifacts
     - task: PublishBuildArtifacts@1
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'react-build'
       displayName: Publish Artifact
-
 
 
 # =====================================================
@@ -89,6 +83,7 @@ stages:
         deploy:
           steps:
 
+          # Download artifacts
           - task: DownloadBuildArtifacts@0
             inputs:
               buildType: current
@@ -96,6 +91,7 @@ stages:
               artifactName: react-build
               downloadPath: '$(Pipeline.Workspace)'
 
+          # Deploy to Azure Web App
           - task: AzureWebApp@1
             inputs:
               azureSubscription: '$(azureServiceConnection)'
@@ -103,3 +99,4 @@ stages:
               appName: '$(webAppName)'
               package: '$(Pipeline.Workspace)/react-build'
             displayName: Deploy to Azure Web App
+```
