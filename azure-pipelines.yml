@@ -9,11 +9,88 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+variables:
+  nodeVersion: '20.x'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+  # Azure Details
+  azureServiceConnection: 'azure-connection'
+  webAppName: 'my-react-webapp'
+
+stages:
+
+# =====================================================
+# STAGE 1 : BUILD
+# =====================================================
+- stage: Build
+  displayName: Build React App
+
+  jobs:
+  - job: BuildJob
+    displayName: Install and Build
+
+    steps:
+
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '$(nodeVersion)'
+      displayName: Install Node.js
+
+    - script: |
+        npm install
+      displayName: Install Dependencies
+
+    - script: |
+        npm run build
+      displayName: Build React Application
+
+    - script: |
+          npm audit fix --force
+      displayName: force fix vulnerablilities      
+
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: 'build'
+        Contents: '**'
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+      displayName: Copy Build Files
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'react-build'
+      displayName: Publish Artifact
+
+      
+
+# =====================================================
+# STAGE 2 : DEPLOY
+# =====================================================
+- stage: Deploy
+  displayName: Deploy to Azure
+  dependsOn: Build
+
+  jobs:
+  - deployment: DeployReactApp
+    displayName: Deploy React App
+
+    environment: production
+
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+
+          - task: DownloadBuildArtifacts@0
+            inputs:
+              buildType: current
+              downloadType: single
+              artifactName: react-build
+              downloadPath: '$(Pipeline.Workspace)'
+
+          - task: AzureWebApp@1
+            inputs:
+              azureSubscription: '$(azureServiceConnection)'
+              appType: webAppLinux
+              appName: '$(webAppName)'
+              package: '$(Pipeline.Workspace)/react-build'
+            displayName: Deploy to Azure Web App
