@@ -1,11 +1,8 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
 trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
 variables:
   nodeVersion: '20.x'
@@ -20,11 +17,11 @@ stages:
 # STAGE 1 : BUILD
 # =====================================================
 - stage: Build
-  displayName: Build React App
+  displayName: 'Build React App'
 
   jobs:
   - job: BuildJob
-    displayName: Install and Build
+    displayName: 'Install and Build'
 
     steps:
 
@@ -32,71 +29,74 @@ stages:
     - task: NodeTool@0
       inputs:
         versionSpec: '$(nodeVersion)'
-      displayName: Install Node.js
+      displayName: 'Install Node.js'
 
-    # Clean install dependencies
+    # Install dependencies
     - script: |
-        npm ci
-      displayName: Install Dependencies
+        npm install
+      displayName: 'Install Dependencies'
 
-    # Verify package.json
-    - script: |
-        cat package.json
-      displayName: Verify package.json
-
-    # Build React App
+    # Build application
     - script: |
         npm run build
-      displayName: Build React Application
+      displayName: 'Build React Application'
+
+    # Verify build folder
+    - script: |
+        ls -la
+        ls -la build
+      displayName: 'Verify Build Output'
 
     # Copy build files
     - task: CopyFiles@2
       inputs:
         SourceFolder: 'build'
         Contents: '**'
-        TargetFolder: '$(Build.ArtifactStagingDirectory)'
-      displayName: Copy Build Files
+        TargetFolder: '$(Build.ArtifactStagingDirectory)/build'
+      displayName: 'Copy Build Files'
 
-    # Publish artifacts
+    # Publish artifact
     - task: PublishBuildArtifacts@1
       inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)/build'
         ArtifactName: 'react-build'
-      displayName: Publish Artifact
+        publishLocation: 'Container'
+      displayName: 'Publish Artifact'
 
 
 # =====================================================
 # STAGE 2 : DEPLOY
 # =====================================================
 - stage: Deploy
-  displayName: Deploy to Azure
+  displayName: 'Deploy to Azure'
   dependsOn: Build
 
   jobs:
   - deployment: DeployReactApp
-    displayName: Deploy React App
+    displayName: 'Deploy React App'
 
-    environment: production
+    environment: 'production'
 
     strategy:
       runOnce:
         deploy:
           steps:
 
-          # Download artifacts
+          # Download artifact
           - task: DownloadBuildArtifacts@0
             inputs:
-              buildType: current
-              downloadType: single
-              artifactName: react-build
+              buildType: 'current'
+              downloadType: 'single'
+              artifactName: 'react-build'
               downloadPath: '$(Pipeline.Workspace)'
+            displayName: 'Download Artifact'
 
-          # Deploy to Azure Web App
+          # Deploy to Azure App Service
           - task: AzureWebApp@1
             inputs:
               azureSubscription: '$(azureServiceConnection)'
-              appType: webAppLinux
+              appType: 'webAppLinux'
               appName: '$(webAppName)'
               package: '$(Pipeline.Workspace)/react-build'
-            displayName: Deploy to Azure Web App
-```
+            displayName: 'Deploy to Azure Web App'
+
