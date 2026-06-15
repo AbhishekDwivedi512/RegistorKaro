@@ -2,116 +2,101 @@ trigger:
 - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: ubuntu-latest
 
 variables:
   nodeVersion: '18.x'
-
-  # Azure Details
   azureServiceConnection: 'azure-connection'
   webAppName: 'abhi-react-webapp'
 
 stages:
 
 # =====================================================
-# STAGE 1 : BUILD
+# BUILD STAGE
 # =====================================================
 - stage: Build
-  displayName: 'Build React App'
+  displayName: Build React App
 
   jobs:
   - job: BuildJob
-    displayName: 'Install and Build'
+    displayName: Build
 
     steps:
 
-    # Install Node.js
-    - task: NodeTool@1
+    - task: NodeTool@0
       inputs:
         versionSpec: '$(nodeVersion)'
-      displayName: 'Install Node.js'
-
-      
-
-    # Install dependencies
-        
-    - task: UseNode@1
-      inputs:
-        version: '18.x'
-      displayName: 'Use Node.js 18'
+      displayName: Install Node.js
 
     - script: |
         node -v
         npm -v
-        which node
-      displayName: 'Verify Node Version'
-
+      displayName: Verify Node Installation
 
     - script: |
         npm install
-      displayName: 'Install Dependencies'
+      displayName: Install Dependencies
 
-    # Build application
     - script: |
         npm run build
-      displayName: 'Build React Application'
+      displayName: Build React Application
 
-    # Verify build folder
     - script: |
-        ls -la
+        echo "Build Output"
         ls -la build
-      displayName: 'Verify Build Output'
+      displayName: Verify Build Output
 
-    # Copy build files
-    - task: CopyFiles@2
+    - task: ArchiveFiles@2
+      displayName: Create Deployment ZIP
       inputs:
-        SourceFolder: 'build'
-        Contents: '**'
-        TargetFolder: '$(Build.ArtifactStagingDirectory)/build'
-      displayName: 'Copy Build Files'
+        rootFolderOrFile: 'build'
+        includeRootFolder: false
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/react-build.zip'
+        replaceExistingArchive: true
 
-    # Publish artifact
     - task: PublishBuildArtifacts@1
+      displayName: Publish Artifact
       inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)/build'
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)/react-build.zip'
         ArtifactName: 'react-build'
         publishLocation: 'Container'
-      displayName: 'Publish Artifact'
-
 
 # =====================================================
-# STAGE 2 : DEPLOY
+# DEPLOY STAGE
 # =====================================================
 - stage: Deploy
-  displayName: 'Deploy to Azure'
+  displayName: Deploy To Azure
   dependsOn: Build
 
   jobs:
   - deployment: DeployReactApp
-    displayName: 'Deploy React App'
-
-    environment: 'production'
+    displayName: Deploy React App
+    environment: production
 
     strategy:
       runOnce:
         deploy:
           steps:
 
-          # Download artifact
           - task: DownloadBuildArtifacts@0
+            displayName: Download Artifact
             inputs:
-              buildType: 'current'
-              downloadType: 'single'
-              artifactName: 'react-build'
+              buildType: current
+              downloadType: single
+              artifactName: react-build
               downloadPath: '$(Pipeline.Workspace)'
-            displayName: 'Download Artifact'
 
-          # Deploy to Azure App Service
+          - script: |
+              echo "Downloaded files:"
+              find $(Pipeline.Workspace) -type f
+            displayName: Verify Downloaded Artifact
+
           - task: AzureWebApp@1
+            displayName: Deploy To Azure App Service
             inputs:
               azureSubscription: '$(azureServiceConnection)'
               appType: 'webAppLinux'
               appName: '$(webAppName)'
-              package: '$(Pipeline.Workspace)/react-build'
-            displayName: 'Deploy to Azure Web App'
-
+              package: '$(Pipeline.Workspace)/react-build/react-build.zip'
+              deploymentMethod: 'zipDeploy'
