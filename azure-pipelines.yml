@@ -25,6 +25,9 @@ stages:
   displayName: Build React App
 
   jobs:
+
+  
+
   - job: BuildJob
     displayName: Install and Build
 
@@ -39,6 +42,10 @@ stages:
         npm install
       displayName: Install Dependencies
 
+    - script: |
+       npm install react-scripts --save
+      displayName: Install reactscript
+      
     - script: |
         npm run build
       displayName: Build React Application
@@ -60,7 +67,7 @@ stages:
         ArtifactName: 'react-build'
       displayName: Publish Artifact
 
-      
+
 
 # =====================================================
 # STAGE 2 : DEPLOY
