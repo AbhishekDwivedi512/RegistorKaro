@@ -31,7 +31,22 @@ stages:
         versionSpec: '$(nodeVersion)'
       displayName: 'Install Node.js'
 
+      
+
     # Install dependencies
+        
+    - task: UseNode@1
+      inputs:
+        version: '18.x'
+      displayName: 'Use Node.js 18'
+
+    - script: |
+        node -v
+        npm -v
+        which node
+      displayName: 'Verify Node Version'
+
+
     - script: |
         npm install
       displayName: 'Install Dependencies'
