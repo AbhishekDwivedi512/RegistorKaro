@@ -106,6 +106,6 @@ stages:
               azureSubscription: '$(azureServiceConnection)'
               appType: 'webAppLinux'
               appName: '$(webAppName)'
-              package: '$(Pipeline.Workspace)/react-build/react-app.zip'
+              package: '$(Pipeline.Workspace)/react-build.zip'
             displayName: 'Deploy to Azure Web App'
 
