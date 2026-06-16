@@ -10,7 +10,7 @@ variables:
 
   # Azure Details
   azureServiceConnection: 'azure-connection'
-  webAppName: 'abhi-react-webapp'
+  webAppName: 'Abhi-web-app_group'
 
 stages:
 
